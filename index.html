@@ -3,52 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TAJ DJ</title>
+  <title>TikTok Downloader - TAJ</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0d0d0d;
-      color: #fff;
+      background-color: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      padding-top: 80px;
     }
-
     h1 {
-      font-size: 3em;
-      margin-bottom: 0.5em;
       color: #00ffcc;
     }
-
-    p {
-      font-size: 1.2em;
-      color: #ccc;
+    input {
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
     }
-
-    .btn {
-      margin-top: 30px;
-      padding: 15px 30px;
-      background: #00ffcc;
+    .buttons {
+      margin-top: 20px;
+    }
+    button {
+      padding: 12px 25px;
+      margin: 10px;
+      background-color: #00ffcc;
       color: #000;
       border: none;
-      border-radius: 10px;
-      font-size: 1.2em;
+      border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s;
+      font-weight: bold;
+      transition: background 0.3s;
     }
-
-    .btn:hover {
-      background: #00bfa6;
-      transform: scale(1.05);
+    button:hover {
+      background-color: #00bfa6;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to TAJ DJ</h1>
-  <p>The beat starts here. Stay tuned for more...</p>
-  <button class="btn">Explore Now</button>
+  <h1>TikTok Downloader</h1>
+  <input type="text" id="videoURL" placeholder="Paste TikTok video URL here" />
+  <div class="buttons">
+    <button onclick="download('mp4')">Download MP4</button>
+    <button onclick="download('mp3')">Download MP3</button>
+    <button onclick="download('hd')">Download HD</button>
+  </div>
+  <script>
+    function download(type) {
+      const url = document.getElementById('videoURL').value;
+      if (!url) return alert('Please paste a TikTok link');
+      // Example: update this to your backend endpoint
+      window.location.href = `https://your-ngrok-link/api/download?url=${encodeURIComponent(url)}&type=${type}`;
+    }
+  </script>
 </body>
 </html>
