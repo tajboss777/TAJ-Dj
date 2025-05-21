@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TikTok Downloader</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    input, button { padding: 10px; margin: 10px; width: 80%; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <h1>TikTok Downloader</h1>
+  <input type="text" id="url" placeholder="Paste TikTok URL here">
+  <br>
+  <button onclick="download('mp3')">Download MP3</button>
+  <button onclick="download('video')">Download Video</button>
+
+  <script>
+    async function download(type) {
+      const videoUrl = document.getElementById('url').value;
+      const endpoint = `https://quiet-drew-easier-formats.trycloudflare.com/api/download?url=${encodeURIComponent(videoUrl)}&type=${type}`;
+      try {
+        const res = await fetch(endpoint);
+        const data = await res.json();
+        if (data && data.downloadUrl) {
+          window.open(data.downloadUrl, '_blank');
+        } else {
+          alert('Failed to get download link');
+        }
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    }
+  </script>
+</body>
+</html>
